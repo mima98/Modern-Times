@@ -6,6 +6,23 @@
 -->
 <html>
 	<head>
+		<script language="JavaScript"> 
+			var i = 0; var path = new Array(); 
+
+			// LIST OF IMAGES 
+			path[0] = "images/image_1.jpg"; 
+			path[1] = "images/image_2.jpg"; 
+			path[2] = "images/image_3.jpg"; 
+
+			function swapImage() 
+			{ 
+			document.slide.src = path[i]; 
+			if(i < path.length - 1) i++; 
+			else i = 0; 
+			setTimeout("swapImage()",3000); 
+			} 
+			window.onload=swapImage; 
+		</script> 
 		<title>Motivation Station</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,12 +35,11 @@
 		<!-- Header -->
 			<header id="header">
 				<div class="container">
-					<h1><a href="index.html" class="icon fa-cube">Scalar</a></h1>
+					<h1><a href="index.html" class="icon fa-cube">Motivation.Station</a></h1>
 					<nav id="nav">
 						<ul>
 							<li><a href="homepage.html">Home</a></li>
-							<li><a href="about.html">About Us</a>
-							</li>
+							<li><a href="about.html">About Us</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -34,6 +50,7 @@
 
 				<!-- Banner -->
 					<section id="banner">
+						<img height="618" name="slide" src="images/image_1.jpg" width="1903" />
 						<div class="container">
 							<header>
 								<h2>Donec amet sed<br />
