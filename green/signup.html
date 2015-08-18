@@ -6,19 +6,50 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>Motivation Station - Sign Up</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+
+		<script type="text/javascript">
+		/***********************************************
+		* Drop Down Date select script- by JavaScriptKit.com
+		* This notice MUST stay intact for use
+		* Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and more
+		***********************************************/
+
+			var monthtext=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+
+			function populatedropdown(dayfield, monthfield, yearfield){
+			var today=new Date()
+			var dayfield=document.getElementById(dayfield)
+			var monthfield=document.getElementById(monthfield)
+			var yearfield=document.getElementById(yearfield)
+			for (var i=0; i<31; i++)
+			dayfield.options[i]=new Option(i, i+1)
+			dayfield.options[today.getDate()]=new Option(today.getDate(), today.getDate(), true, true) //select today's day
+			for (var m=0; m<12; m++)
+			monthfield.options[m]=new Option(monthtext[m], monthtext[m])
+			monthfield.options[today.getMonth()]=new Option(monthtext[today.getMonth()], monthtext[today.getMonth()], true, true) //select today's month
+			var thisyear=today.getFullYear() - 16
+			for (var y=0; y<90; y++){
+			yearfield.options[y]=new Option(thisyear, thisyear)
+			thisyear-=1
+			}
+			yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, true) //select today's year
+			}
+		</script>
+
 	</head>
 	<body>
 
 		<!-- Header -->
 			<header id="header">
 				<div class="container">
-					<h1><a href="index.html" class="icon fa-cube">Scalar</a></h1>
+					<h1><a href="index.html" class="icon fa-cube">Motivation Station</a></h1>
 					<nav id="nav">
 						<ul>
 							<li><a href="index.html">Home</a></li>
@@ -41,6 +72,7 @@
 								</ul>
 							</li>
 							<li><a href="elements.html">Elements</a></li>
+							<li class="current"><a href="signup.html">Sign Up</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -54,8 +86,8 @@
 					<div id="main" class="wrapper style3">
 						<div class="container 75%">
 							<header class="major">
-								<h2>Contact</h2>
-								<p>Nisl faucibus sed accumsan col pretium</p>
+								<h2>Sign Up</h2>
+								<p>Create an account to challenge yourself and your friends!</p>
 							</header>
 
 							<!-- Content -->
@@ -63,10 +95,71 @@
 									<form method="post" action="#">
 										<div class="row uniform 50%">
 											<div class="6u 12u$(xsmall)">
-												<input type="text" name="name" id="name" value="" placeholder="Name" />
+												<input type="text" name="firstname" id="name" value="" placeholder="First Name" />
 											</div>
-											<div class="6u$ 12u$(xsmall)">
+											<div class="6u 12u$(xsmall)">
+												<input type="text" name="lastname" id="name" value="" placeholder="Last Name" />
+											</div>
+										</div>
+										<div class="row uniform 50%">
+											<div class="12u$">
 												<input type="email" name="email" id="email" value="" placeholder="Email" />
+											</div>
+										</div>
+										<div class="row uniform 50%">
+											<div class="12u$">
+												<input type="email" name="confirmemail" id="email" value="" placeholder="Confirm Email" />
+											</div>
+										</div>
+										<div class="row uniform 50%">
+											<div class="12u$">
+												<input type="email" name="username" id="email" value="" placeholder="Username" />
+											</div>
+										</div>
+										<div class="row uniform 50%">
+											<div class="6u 12u$(xsmall)">
+												<input type="text" name="password" id="name" value="" placeholder="Password" />
+											</div>
+											<div class="6u 12u$(xsmall)">
+												<input type="text" name="confirmpassword" id="name" value="" placeholder="Confirm Password" />
+											</div>
+										</div>
+										<div class="row uniform 50%">
+											<div class="4u">
+												<form action="" name="someform">
+												<select id="daydropdown">
+												</select>
+												</form>
+												<script type="text/javascript">
+												//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
+												window.onload=function(){
+												populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
+												}
+												</script>
+											</div>
+											<div class="4u">
+												<form action="" name="someform">
+												<select id="monthdropdown">
+												</select>
+												</form>
+												<script type="text/javascript">
+												//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
+												window.onload=function(){
+												populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
+												}
+												</script>
+											</div>
+											<div class="4u">
+												<form action="" name="someform">
+												<select id="yeardropdown">
+												</select>
+												</form>
+												<script type="text/javascript">
+												//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
+												window.onload=function(){
+												populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
+												}
+												</script>
 											</div>
 										</div>
 										<div class="row uniform 50%">
@@ -88,6 +181,11 @@
 											</div>
 										</div>
 									</form>
+
+
+											
+
+
 								</section>
 
 						</div>
