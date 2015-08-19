@@ -6,12 +6,46 @@
 -->
 <html>
 	<head>
-		<title>Motivation Station - Bank</title>
+		<title>Motivation Station - Bank Account</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+
+		<script type="text/javascript">
+			/***********************************************
+			* Drop Down Date select script- by JavaScriptKit.com
+			* This notice MUST stay intact for use
+			* Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and more
+			***********************************************/
+
+				var monthtext=['Month', 'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+
+				function populatedropdown(monthfield, yearfield){
+					var today=new Date();
+					var monthfield=document.getElementById(monthfield);
+					var yearfield=document.getElementById(yearfield);
+					
+					for (var m=0; m<=12; m++) {
+
+						monthfield.options[m]=new Option(monthtext[m], monthtext[m]);
+						monthfield.options["Month"]=new Option("Month", monthtext[today.getMonth()], true, true); //select today's month
+						
+					}
+
+					var thisyear=today.getFullYear() - 16;
+					for (var y=0; y<90; y++){
+						yearfield.options[y]=new Option(thisyear, thisyear);
+						thisyear-=1;
+					}
+
+					yearfield.options[0]=new Option("Year", today.getFullYear(), true, true); //select today's year
+				}
+			</script>
+
+
 	</head>
 	<body>
 
@@ -21,7 +55,7 @@
 					<h1><a href="index.html" class="icon fa-cube">Motivation Station</a></h1>
 					<nav id="nav">
 						<ul>
-							<li><a href="userhome.html">Harry Potter</a></li>
+							<li> <a href="userhome.html">Harry Potter</a></li>
 							<li class="current"><a href="bank.html">Bank Account</a></li>
 							<li><a href="homepage.html">Log Out</a></li>
 						</ul>
@@ -32,99 +66,89 @@
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
-
 				<!-- Main-->
 					<div id="main" class="wrapper style3">
-						<div class="container 75%">
+						<div class="container">
 							<header class="major">
-								<h2>Sign Up</h2>
-								<p>Create an account to challenge yourself and your friends!</p>
+								<h2>Bank Account</h2>
 							</header>
+							<div class="row 200%">
+								<div class="8u 12u$(medium)">
 
-							<!-- Content -->
-								<section id="content" style="margin-bottom:20px;">
-									<form method="post" action="#">
-										<div class="row uniform 50%">
-											<div class="6u 12u$(xsmall)">
-												<input type="text" name="firstname" id="name" value="" placeholder="First Name" />
+									<!-- Content -->
+										<section id="content">
+											<center><h3>Connect Your Card</h3></center>
+											<form method="post" action="#">
+												<div class="row uniform 50%">
+													<div class="6u 12u$(xsmall)">
+														<input type="text" name="firstname" id="name" value="" placeholder="First Name" />
+													</div>
+													<div class="6u 12u$(xsmall)">
+														<input type="text" name="lastname" id="name" value="" placeholder="Last Name" />
+													</div>
+												</div>
+												<div class="row uniform 50%">
+													<div class="12u$">
+														<input type="text" name="username" id="name" value="" placeholder="Card Number" />
+													</div>
+												</div>
+												<div class="row uniform 50%">
+													<div class="6u 12u$(xsmall)">
+														<label class="arrowdropdown">
+														<select id="monthdropdown">
+														</select>
+														</label>
+													</div>
+													<div class="6u 12u$(xsmall)">
+														<label class="arrowdropdown">
+														<select id="yeardropdown" placeholder="Year">
+														</select>
+														</label>
+													</div>
+												</div>
+											</form>
+											<div class="row uniform">
+												<div class="12u$">
+													<ul class="actions align-center">
+														<li><input type="submit" value="Submit" class="special" /></li>
+													</ul>
+												</div>
 											</div>
-											<div class="6u 12u$(xsmall)">
-												<input type="text" name="lastname" id="name" value="" placeholder="Last Name" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<input type="email" name="email" id="email" value="" placeholder="Email" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<input type="email" name="confirmemail" id="email" value="" placeholder="Confirm Email" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<input type="email" name="username" id="email" value="" placeholder="Username" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="6u 12u$(xsmall)">
-												<input type="text" name="password" id="name" value="" placeholder="Password" />
-											</div>
-											<div class="6u 12u$(xsmall)">
-												<input type="text" name="confirmpassword" id="name" value="" placeholder="Confirm Password" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="4u">
-												<label class="arrowdropdown">
-												<select id="daydropdown">
-												</select>
-												</label>
-											</div>
-											<div class="4u">
-												<label class="arrowdropdown">
-												<select id="monthdropdown">
-												</select>
-												</label>
-											</div>
-											<div class="4u">
-												<label class="arrowdropdown">
-												<select id="yeardropdown" placeholder="Year">
-												</select>
-												</label>
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<label class="arrowdropdown">
-												<select id="charity" name="charity">
-													<option disabled="true" selected="selected">Charity</option>
-													<option value="unicef">UNICEF</option>
-													<option value="americancancersociety">American Cancer Society</option>
-													<option value="doctorswithoutborders">Doctors Without Borders</option>
-													<option value="pencilsofpromise">Pencils of Promise</option>
-													<option value="natureconservancy">Nature Conservancy</option>
-													<option value="charitywater">Charity Water</option>
-												</select>
-											</label>
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<textarea name="message" id="message" placeholder="Suggest a charity" rows="4"></textarea>
-											</div>
-										</div>
-									</form>
-								<div class="row uniform">
-											<div class="12u$">
-												<ul class="actions align-center">
-													<li><input type="submit" value="Submit" class="special" /></li>
-												</ul>
-											</div>
+										</section>
+
 								</div>
-								</section>
+								<div class="4u$ 12u$(medium)">
 
+									<!-- Sidebar -->
+										<section id="sidebar">
+											<section>
+												<center><h3>Current Balance: $0.00</h3></center>
+											</section>
+											<hr />
+											<section>
+												<h3>Current Balance: $0.00</h3>
+												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
+												<footer>
+													<ul class="actions">
+														<li><a href="#" class="button small">Learn More</a></li>
+													</ul>
+												</footer>
+											</section>
+											<hr />
+											<section>
+												<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+												<h3>Amet Lorem Tempus</h3>
+												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+												<footer>
+													<ul class="actions">
+														<li><a href="#" class="button small">Learn More</a></li>
+													</ul>
+												</footer>
+											</section>
+										</section>
+
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -151,9 +175,10 @@
 			<script type="text/javascript">
 				//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
 				window.onload=function(){
-				populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
+				populatedropdown("monthdropdown", "yeardropdown")
 				}
 			</script>
+
 
 	</body>
 </html>
