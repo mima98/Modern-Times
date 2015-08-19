@@ -12,45 +12,6 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-
-
-		<script type="text/javascript">
-		/***********************************************
-		* Drop Down Date select script- by JavaScriptKit.com
-		* This notice MUST stay intact for use
-		* Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and more
-		***********************************************/
-
-			var monthtext=['Month', 'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
-
-			function populatedropdown(dayfield, monthfield, yearfield){
-				var today=new Date();
-				var dayfield=document.getElementById(dayfield);
-				var monthfield=document.getElementById(monthfield);
-				var yearfield=document.getElementById(yearfield);
-
-				for (var i=0; i<=31; i++) {
-					dayfield.options[i]=new Option(i, i+1);
-					dayfield.options[0]=new Option("Day", today.getDate(), true, true) //select today's day
-				}
-				
-				for (var m=0; m<=12; m++) {
-
-					monthfield.options[m]=new Option(monthtext[m], monthtext[m]);
-					monthfield.options["Month"]=new Option("Month", monthtext[today.getMonth()], true, true); //select today's month
-					
-				}
-
-				var thisyear=today.getFullYear() - 16;
-				for (var y=0; y<90; y++){
-					yearfield.options[y]=new Option(thisyear, thisyear);
-					thisyear-=1;
-				}
-
-				yearfield.options[0]=new Option("Year", today.getFullYear(), true, true); //select today's year
-			}
-		</script>
-
 	</head>
 	<body>
 
@@ -77,89 +38,28 @@
 					<div id="main" class="wrapper style3">
 						<div class="container 75%">
 							<header class="major">
-								<h2>Sign Up</h2>
-								<p>Create an account to challenge yourself and your friends!</p>
+								<h2>Log In</h2>
+								<p>Log in to send challenges to your friends!</p>
 							</header>
 
 							<!-- Content -->
 								<section id="content" style="margin-bottom:50px;">
 									<form method="post" action="#">
 										<div class="row uniform 50%">
-											<div class="6u 12u$(xsmall)">
-												<input type="text" name="firstname" id="name" value="" placeholder="First Name" />
-											</div>
-											<div class="6u 12u$(xsmall)">
-												<input type="text" name="lastname" id="name" value="" placeholder="Last Name" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<input type="email" name="email" id="email" value="" placeholder="Email" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<input type="email" name="confirmemail" id="email" value="" placeholder="Confirm Email" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
 											<div class="12u$">
 												<input type="email" name="username" id="email" value="" placeholder="Username" />
 											</div>
 										</div>
 										<div class="row uniform 50%">
-											<div class="6u 12u$(xsmall)">
+											<div class="12u$">
 												<input type="text" name="password" id="name" value="" placeholder="Password" />
-											</div>
-											<div class="6u 12u$(xsmall)">
-												<input type="text" name="confirmpassword" id="name" value="" placeholder="Confirm Password" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="4u">
-												<label class="arrowdropdown">
-												<select id="daydropdown">
-												</select>
-												</label>
-											</div>
-											<div class="4u">
-												<label class="arrowdropdown">
-												<select id="monthdropdown">
-												</select>
-												</label>
-											</div>
-											<div class="4u">
-												<label class="arrowdropdown">
-												<select id="yeardropdown" placeholder="Year">
-												</select>
-												</label>
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<label class="arrowdropdown">
-												<select id="charity" name="charity">
-													<option disabled="true" selected="selected">Charity</option>
-													<option value="unicef">UNICEF</option>
-													<option value="americancancersociety">American Cancer Society</option>
-													<option value="doctorswithoutborders">Doctors Without Borders</option>
-													<option value="pencilsofpromise">Pencils of Promise</option>
-													<option value="natureconservancy">Nature Conservancy</option>
-													<option value="charitywater">Charity Water</option>
-												</select>
-											</label>
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<textarea name="message" id="message" placeholder="Suggest a charity" rows="4"></textarea>
 											</div>
 										</div>
 									</form>
 								<div class="row uniform">
 											<div class="12u$">
 												<ul class="actions align-center">
-													<li><input type="submit" value="Submit" class="special" /></li>
+													<li><input type="submit" value="Login" class="special" /></li>
 												</ul>
 											</div>
 								</div>
