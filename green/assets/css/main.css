@@ -1573,6 +1573,29 @@
 		line-height: 1.65em;
 	}
 
+	label.arrowdropdown {
+		position: relative;
+/*		display: inline-block;*/
+	}
+
+	.arrowdropdown select {
+		display: inline-block;
+		margin: 0;
+		outline: none;
+		line-height: 1.2;
+	}
+
+	.arrowdropdown:after {
+		content:"▼";
+		position: absolute;
+		top: 7px;
+		right: 2px;
+		bottom: 0;
+		font-size:12px;
+		padding: 0 7px;
+		color: gray;
+	}
+
 	a {
 		color: #7bceba;
 		text-decoration: underline;
