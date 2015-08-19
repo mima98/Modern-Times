@@ -21,25 +21,33 @@
 		* Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and more
 		***********************************************/
 
-			var monthtext=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+			var monthtext=['Month', 'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
 
 			function populatedropdown(dayfield, monthfield, yearfield){
-			var today=new Date()
-			var dayfield=document.getElementById(dayfield)
-			var monthfield=document.getElementById(monthfield)
-			var yearfield=document.getElementById(yearfield)
-			for (var i=0; i<31; i++)
-			dayfield.options[i]=new Option(i, i+1)
-			dayfield.options[today.getDate()]=new Option(today.getDate(), today.getDate(), true, true) //select today's day
-			for (var m=0; m<12; m++)
-			monthfield.options[m]=new Option(monthtext[m], monthtext[m])
-			monthfield.options[today.getMonth()]=new Option(monthtext[today.getMonth()], monthtext[today.getMonth()], true, true) //select today's month
-			var thisyear=today.getFullYear() - 16
-			for (var y=0; y<90; y++){
-			yearfield.options[y]=new Option(thisyear, thisyear)
-			thisyear-=1
-			}
-			yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, true) //select today's year
+				var today=new Date();
+				var dayfield=document.getElementById(dayfield);
+				var monthfield=document.getElementById(monthfield);
+				var yearfield=document.getElementById(yearfield);
+
+				for (var i=0; i<=31; i++) {
+					dayfield.options[i]=new Option(i, i+1);
+					dayfield.options[0]=new Option("Day", today.getDate(), true, true) //select today's day
+				}
+				
+				for (var m=0; m<=12; m++) {
+
+					monthfield.options[m]=new Option(monthtext[m], monthtext[m]);
+					monthfield.options["Month"]=new Option("Month", monthtext[today.getMonth()], true, true); //select today's month
+					
+				}
+
+				var thisyear=today.getFullYear() - 16;
+				for (var y=0; y<90; y++){
+					yearfield.options[y]=new Option(thisyear, thisyear);
+					thisyear-=1;
+				}
+
+				yearfield.options[0]=new Option("Year", today.getFullYear(), true, true); //select today's year
 			}
 		</script>
 
@@ -52,28 +60,10 @@
 					<h1><a href="index.html" class="icon fa-cube">Motivation Station</a></h1>
 					<nav id="nav">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li>
-								<a href="#">Page Layouts</a>
-								<ul>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="no-sidebar.html">No Sidebar</a></li>
-									<li><a href="contact.html">Contact</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
-											<li><a href="#">Option Three</a></li>
-											<li><a href="#">Option Four</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="elements.html">Elements</a></li>
-							<li class="current"><a href="signup.html">Sign Up</a></li>
-						</ul>
+							<li class="current"><a href="homepage.html">Home</a></li>
+							<li><a href="about.html">About Us</a></li>
+							<li><a href="signup.html">Sign Up</a></li>
+						<ul>
 					</nav>
 				</div>
 			</header>
@@ -126,66 +116,30 @@
 										</div>
 										<div class="row uniform 50%">
 											<div class="4u">
-												<form action="" name="someform">
 												<select id="daydropdown">
 												</select>
-												</form>
-												<script type="text/javascript">
-												//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
-												window.onload=function(){
-												populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
-												}
-												</script>
 											</div>
 											<div class="4u">
-												<form action="" name="someform">
 												<select id="monthdropdown">
 												</select>
-												</form>
-												<script type="text/javascript">
-												//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
-												window.onload=function(){
-												populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
-												}
-												</script>
+										
 											</div>
 											<div class="4u">
-												<form action="" name="someform">
-												<select id="yeardropdown">
+												<select id="yeardropdown" placeholder="Year">
 												</select>
-												</form>
-												<script type="text/javascript">
-												//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
-												window.onload=function(){
-												populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
-												}
-												</script>
 											</div>
 										</div>
 										<div class="row uniform 50%">
 											<div class="12u$">
-												<input type="text" name="subject" id="subject" value="" placeholder="Subject" />
-											</div>
-										</div>
-										<div class="row uniform 50%">
-											<div class="12u$">
-												<textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
-											</div>
-										</div>
-										<div class="row uniform">
-											<div class="12u$">
-												<ul class="actions align-center">
-													<li><input type="submit" value="Send Message" class="special" /></li>
-													<li><input type="reset" value="Reset Form" /></li>
-												</ul>
+												<select id="charity" name="charity">
+													<option disabled="true" selected="selected">Charity</option>
+													<option value="charity">Charity Water</option>
+													<option value="unisef">UNISEF</option>
+													<option value="american cancer society">American Cancer Society</option>
+												</select>
 											</div>
 										</div>
 									</form>
-
-
-											
-
-
 								</section>
 
 						</div>
@@ -210,6 +164,13 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+
+			<script type="text/javascript">
+				//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
+				window.onload=function(){
+				populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
+				}
+			</script>
 
 	</body>
 </html>
