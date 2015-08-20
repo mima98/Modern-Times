@@ -1,1 +1,185 @@
-sjshfskjdhfs
+<!DOCTYPE HTML>
+<!--
+	Scalar by Pixelarity
+	pixelarity.com @pixelarity
+	License: pixelarity.com/license
+-->
+<html>
+	<head>
+		<title>Motivation Station - Bank Account</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<link rel="shortcut icon" href="images/logo.png">
+
+
+		<script type="text/javascript">
+			/***********************************************
+			* Drop Down Date select script- by JavaScriptKit.com
+			* This notice MUST stay intact for use
+			* Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and more
+			***********************************************/
+
+				var monthtext=['Month', 'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+
+				function populatedropdown(monthfield, yearfield){
+					var today=new Date();
+					var monthfield=document.getElementById(monthfield);
+					var yearfield=document.getElementById(yearfield);
+					
+					for (var m=0; m<=12; m++) {
+
+						monthfield.options[m]=new Option(monthtext[m], monthtext[m]);
+						monthfield.options["Month"]=new Option("Month", monthtext[today.getMonth()], true, true); //select today's month
+						
+					}
+
+					var thisyear=today.getFullYear() - 16;
+					for (var y=0; y<90; y++){
+						yearfield.options[y]=new Option(thisyear, thisyear);
+						thisyear-=1;
+					}
+
+					yearfield.options[0]=new Option("Year", today.getFullYear(), true, true); //select today's year
+				}
+			</script>
+
+
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="container">
+					<h1><a href="index.html" class="icon fa-cube">Motivation Station</a></h1>
+					<nav id="nav">
+						<ul>
+							<li> <a href="userhome.html">Harry Potter</a></li>
+							<li class="current"><a href="bank.html">Bank Account</a></li>
+							<li><a href="homepage.html">Log Out</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Main-->
+					<div id="main" class="wrapper style3">
+						<div class="container">
+							<header class="major">
+								<h2>Bank Account</h2>
+							</header>
+							<div class="row 200%">
+								<div class="8u 12u$(medium)">
+
+									<!-- Content -->
+										<section id="content">
+											<center><h3>Connect Your Card</h3></center>
+											<form method="post" action="#">
+												<div class="row uniform 50%">
+													<div class="6u 12u$(xsmall)">
+														<input type="text" name="firstname" id="name" value="" placeholder="First Name" />
+													</div>
+													<div class="6u 12u$(xsmall)">
+														<input type="text" name="lastname" id="name" value="" placeholder="Last Name" />
+													</div>
+												</div>
+												<div class="row uniform 50%">
+													<div class="12u$">
+														<input type="text" name="username" id="name" value="" placeholder="Card Number" />
+													</div>
+												</div>
+												<div class="row uniform 50%">
+													<div class="6u 12u$(xsmall)">
+														<label class="arrowdropdown">
+														<select id="monthdropdown">
+														</select>
+														</label>
+													</div>
+													<div class="6u 12u$(xsmall)">
+														<label class="arrowdropdown">
+														<select id="yeardropdown" placeholder="Year">
+														</select>
+														</label>
+													</div>
+												</div>
+											</form>
+											<div class="row uniform">
+												<div class="12u$">
+													<ul class="actions align-center">
+														<li><input type="submit" value="Submit" class="special" /></li>
+													</ul>
+												</div>
+											</div>
+										</section>
+
+								</div>
+								<div class="4u$ 12u$(medium)">
+
+									<!-- Sidebar -->
+										<section id="sidebar">
+											<section>
+												<center><h3>Current Balance: $0.00</h3></center>
+											</section>
+											<hr />
+											<section>
+												<h3>Current Balance: $0.00</h3>
+												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
+												<footer>
+													<ul class="actions">
+														<li><a href="#" class="button small">Learn More</a></li>
+													</ul>
+												</footer>
+											</section>
+											<hr />
+											<section>
+												<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+												<h3>Amet Lorem Tempus</h3>
+												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+												<footer>
+													<ul class="actions">
+														<li><a href="#" class="button small">Learn More</a></li>
+													</ul>
+												</footer>
+											</section>
+										</section>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="major-icons">
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<p class="copyright">&copy; Motivation Station. All rights reserved.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+			<script type="text/javascript">
+				//populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
+				window.onload=function(){
+				populatedropdown("monthdropdown", "yeardropdown")
+				}
+			</script>
+
+
+	</body>
+</html>
