@@ -99,33 +99,47 @@
 								<section id="content" style="margin-bottom:20px;">
 										<div class="row uniform 50%">
 											<div class="6u 12u$(xsmall)">
+												<div>
            										<input id="firstname" type="text" placeholder="First Name" />
-											</div>
+           										</div>
+           									</div>
 											<div class="6u 12u$(xsmall)">
+												<div>
 												<input id="lastname" type="text" placeholder="Last Name" />
+												</div>
 											</div>
 										</div>
 										<div class="row uniform 50%">
 											<div class="12u$">
+												<div>
 												<input id="email" type="email" placeholder="Email" />
+												</div>
 											</div>
 										</div>
 										<div class="row uniform 50%">
 											<div class="12u$">
+												<div>
 												<input id="confirmemail" type="email" placeholder="Confirm Email" />
+												</div>
 											</div>
 										</div>
 										<div class="row uniform 50%">
 											<div class="12u$">
+												<div>
 												<input id="username" type="text" placeholder="Username" />
+												</div>
 											</div>
 										</div>
 										<div class="row uniform 50%">
 											<div class="6u 12u$(xsmall)">
+												<div>
 												<input id="password" type="password" placeholder="Password" />
+												</div>
 											</div>
 											<div class="6u 12u$(xsmall)">
+												<div>
 												<input id="confirmpassword" type="password" placeholder="Confirm Password" />
+												</div>
 											</div>
 										</div>
 										<!-- <div class="row uniform 50%">
@@ -152,7 +166,7 @@
 										</div> -->
 								<div class="row uniform">
 									<div class="12u$">
-										<button id="createAccntButton">Create Account</button>
+										<center><button id="createAccntButton">Create Account</button></center>
 									</div>
 								</div>
 								</section>
@@ -189,9 +203,10 @@
 
 
 <!-- Parse stuff -->
+
 <script>
    //This line identifies you and to what application on Parse the data will be transmitted to and from, PUT YOUR OWN KEYS HERE
-   Parse.initialize("Vag1OMAUUOrVrQsszG1vj4W19hLPPqUnCGwENgUo", "dMtOmghcVsZuCiDfuK0xeSbKsofwFkLkF5tDOIHd");
+   Parse.initialize("VI0h3nfcAKbIyBZv8NAZp0FUZ2HNhlCLmXYjP6dC", "DYYYhL6rV6BBPwINUBiiuIgbc7hnLN3mYWEDtjWY");
 
 
    //Code for signing up a user
@@ -209,8 +224,8 @@
        var user = new Parse.User();
        user.set("firstname", firstnameTxtBox.val());
        user.set("lastname", lastnameTxtBox.val());
-       user.set("email", emailTxtBox.val());
-       user.set("confirmemail", confirmemailTxtBox.val());
+       user.set("email", emailTxtBox.val()); 
+       user.set("confirmemail", confirmemailTxtBox.val());             
        user.set("username", usernameTxtBox.val());
        user.set("password", passwordTxtBox.val());
        user.set("confirmpassword", confirmpasswordTxtBox.val());
@@ -218,7 +233,7 @@
        user.signUp(null, {
            success: function (user) {
                // Hooray!
-               window.location = "userhome.html"
+               alert("User " + user.getUsername() + " is created and logged in!");
            },
            error: function (user, error) {
                // Show the error message somewhere and let the user try again.
@@ -227,6 +242,18 @@
        });
    });
 
+
+   //Code for displaying a user's info
+   $("#displayInfoButton").on("click", function (e) {
+       console.log("displaying user's info");
+
+       var user = Parse.User.current();//since the user is already created and logged in, just get the current user
+       var outputText  = "username: " + user.get("username") + "/ password: " + user.get("password") + "eyeColor: " + user.get("eyeColor");
+       $("#output").text(outputText);
+       console.log("username: " + user.get("username"));
+       console.log("password: " + user.get("password"));
+       console.log("eyeColor: " + user.get("eyeColor"));
+   });
 
 
 
