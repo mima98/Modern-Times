@@ -8,46 +8,28 @@
 	<head>
 		<title>Motivation Station - Check-In</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="shortcut icon" href="images/checkcircle.png" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<script type="text/javascript"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"
+        async defer>
+   		</script>
 
-		<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-		<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
 
 		<style>
-			body { 
-				margin:0; 
-				padding:0; 
-			}
-	  		#map { 
-	  			position:relative; 
-	  			top:0; 
-	  			bottom:0; 
-	  			width:140%;
-	  			height:40%; 
-	  		}
-			.ui-button {
-		  		background:#3887BE;
-				color:#FFF;
-				display:block;
-				position:absolute;
-				top:50%;left:50%;
-				width:160px;
-				margin:-20px 0 0 -80px;
-				z-index:100;
-				text-align:center;
-				padding:10px;
-				border:1px solid rgba(0,0,0,0.4);
-				border-radius:3px;
-			}
-		  	.ui-button:hover {
-		    	background:#3074a4;
-		    	color:#fff;
-		    }
+			html, body {
+        		height: 100%;
+        		margin: 0;
+        		padding: 0;
+      		}
+     		 #map {
+        		height: 100%;
+      		}
 		</style>
 </head>
 	
@@ -126,8 +108,7 @@
 														<li style="margin-top:-3px; margin-left:50px; margin-bottom:10px;">
 															<p class="requestvariables">Check-In on your Challenge by sending your Location</p>&nbsp;
 														</li>
-														<center><div id='map'></div></center>
-															<center><a href='#' id='geolocate' class='ui-button'>Find me</a></center>
+														<div id="map"></div>
 													</div>
 													<div class="4u">
 														<ul class="actions align-center">
@@ -187,55 +168,41 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 			<script>
-				L.mapbox.accessToken = 'pk.eyJ1IjoiZXRyYW45OSIsImEiOiJkZTliOGE0Y2JiZmVkMTc4ZjE2NWVjYzQzMzg4ZmIwYiJ9.gviZItgZZPWUzLmJDBwvmg';
-				var geolocate = document.getElementById('geolocate');
-				var map = L.mapbox.map('map', 'etran99.n8n43b4d');
+				function initMap() {
+  				var map = new google.maps.Map(document.getElementById('map'), {
+  					center: {lat: -34.397, lng: 150.644},
+  					zoom: 6
+  				});
+  				var infoWindow = new google.maps.InfoWindow({map: map});
 
-				var myLayer = L.mapbox.featureLayer().addTo(map);
+				// Try HTML5 geolocation.
+				if (navigator.geolocation) {
+				    navigator.geolocation.getCurrentPosition(function(position) {
+				     	var pos = {
+				        	lat: position.coords.latitude,
+				        	lng: position.coords.longitude
+				      	};
 
-				// This uses the HTML5 geolocation API, which is available on
-				// most mobile browsers and modern browsers, but not in Internet Explorer
-				//
-				// See this chart of compatibility for details:
-				// http://caniuse.com/#feat=geolocation
-				if (!navigator.geolocation) {
-				    geolocate.innerHTML = 'Geolocation is not available';
-				} else {
-				    geolocate.onclick = function (e) {
-				        e.preventDefault();
-				        e.stopPropagation();
-				        map.locate();
-				    };
+				      	infoWindow.setPosition(pos);
+				      	infoWindow.setContent('Location found.');
+				      	map.setCenter(pos);
+				    }, function() {
+				      handleLocationError(true, infoWindow, map.getCenter());
+				    });
+				  	} else {
+				    // Browser doesn't support Geolocation
+				    handleLocationError(false, infoWindow, map.getCenter());
+				  }
 				}
 
-				// Once we've got a position, zoom and center the map
-				// on it, and add a single marker.
-				map.on('locationfound', function(e) {
-				    map.fitBounds(e.bounds);
+				function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+				  infoWindow.setPosition(pos);
+				  infoWindow.setContent(browserHasGeolocation ?
+				                        'Error: The Geolocation service failed.' :
+				                        'Error: Your browser doesn\'t support geolocation.');
+				}
 
-				    myLayer.setGeoJSON({
-				        type: 'Feature',
-				        geometry: {
-				            type: 'Point',
-				            coordinates: [e.latlng.lng, e.latlng.lat]
-				        },
-				        properties: {
-				            'title': 'Here I am!',
-				            'marker-color': '#ff8888',
-				            'marker-symbol': 'star'
-				        }
-				    });
-
-				    // And hide the geolocation button
-				    geolocate.parentNode.removeChild(geolocate);
-				});
-
-				// If the user chooses not to allow their location
-				// to be shared, display an error message.
-				map.on('locationerror', function() {
-				    geolocate.innerHTML = 'Position could not be found';
-				});
-				</script>
+			</script>
 
 	</body>
 </html>
