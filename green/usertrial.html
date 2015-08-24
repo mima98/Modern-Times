@@ -20,7 +20,15 @@
 	    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 	    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	    <script src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+
 <!-- 	   end of Parse stuff -->
+ 
+
+
+
+
+
+
 
 
 	</head>
@@ -55,13 +63,52 @@
 							<div class="row 200%">
 								<div class="4u 12u$(medium)">
 
+
+
+
+<script>
+		$("#createAccntButton").on("click", function (e) {
+       console.log("signing up user");
+
+       var firstnameTxtBox = $("#firstname");
+       var lastnameTxtBox = $("#lastname");
+       var emailTxtBox = $("#email");
+       var confirmemailTxtBox = $("#confirmemail");
+       var usernameTxtBox = $("#username");
+       var passwordTxtBox = $("#password");
+       var confirmpasswordTxtBox = $("#confirmpassword");
+
+       var user = new Parse.User();
+       user.set("firstname", firstnameTxtBox.val());
+       user.set("lastname", lastnameTxtBox.val());
+       user.set("email", emailTxtBox.val());
+       user.set("confirmemail", confirmemailTxtBox.val());
+       user.set("username", usernameTxtBox.val());
+       user.set("password", passwordTxtBox.val());
+       user.set("confirmpassword", confirmpasswordTxtBox.val());
+
+       user.signUp(null, {
+           success: function (user) {
+               // Hooray!
+               window.location = "userhome.html"
+           },
+           error: function (user, error) {
+               // Show the error message somewhere and let the user try again.
+               alert("Error: " + error.code + " " + error.message);
+           }
+       });
+   });
+
+</script>
+
 									<!-- Sidebar -->
 										<section id="sidebar">
 											<section>
 												<blockquote class="testimonial"> 
 													<span class="image style2"><img src="images/avatar.png" alt="" /></span> 
 												</blockquote>
-												<h3 style="margin-bottom:30px;"><center>iamthechosen1</center></h3>
+												<h3 style="margin-bottom:30px;"><center>"firstname"</center></h3>
+												<!-- the username -->
 												<footer>
 													<ul class="actions">														
 														<center><li><a href="newchallenge.html" class="button fit">New Challenges</a></li></center>
