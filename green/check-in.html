@@ -8,13 +8,48 @@
 	<head>
 		<title>Motivation Station - Check-In</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="shortcut icon" href="images/checkcircle.png" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<script type="text/javascript"></script>
-	</head>
+
+		<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+		<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+
+		<style>
+			body { 
+				margin:0; 
+				padding:0; 
+			}
+	  		#map { 
+	  			position:relative; 
+	  			top:0; 
+	  			bottom:0; 
+	  			width:140%;
+	  			height:40%; 
+	  		}
+			.ui-button {
+		  		background:#3887BE;
+				color:#FFF;
+				display:block;
+				position:absolute;
+				top:50%;left:50%;
+				width:160px;
+				margin:-20px 0 0 -80px;
+				z-index:100;
+				text-align:center;
+				padding:10px;
+				border:1px solid rgba(0,0,0,0.4);
+				border-radius:3px;
+			}
+		  	.ui-button:hover {
+		    	background:#3074a4;
+		    	color:#fff;
+		    }
+		</style>
+</head>
 	
 	
 	<body>
@@ -77,11 +112,7 @@
 												<div class="row uniform 50%" style="margin-bottom:10px;">
 													<div class="8u 12u$(xsmall)">
 														<li style="margin-top:-3px; margin-left:50px;">
-															<p class="requestvariables">Check-In</p>&nbsp;&nbsp;
-															<span class="request">on your</span>&nbsp;&nbsp;
-															<p class="requestvariables">Challenge</p>&nbsp;&nbsp;
-															<span class="request">with a</span>&nbsp;&nbsp;
-															<p class="requestvariables">Photo</p>&nbsp;&nbsp;
+															<p class="requestvariables">Check-In on Your Challenge with a Photo</p>&nbsp;&nbsp;
 														</li>
 													</div>
 													<div class="4u">
@@ -92,13 +123,11 @@
 												</div>
 												<div class="row uniform 50%" style="margin-bottom:10px;">
 													<div class="8u 12u$(xsmall)">
-														<li style="margin-top:-3px; margin-left:50px;">
-															<p class="requestvariables">Check-In</p>&nbsp;
-															<span class="request">on your</span>&nbsp;
-															<p class="requestvariables">Challenge</p>&nbsp;
-															<span class="request">by sending your</span>&nbsp;
-															<p class="requestvariables">Location</p>&nbsp;
+														<li style="margin-top:-3px; margin-left:50px; margin-bottom:10px;">
+															<p class="requestvariables">Check-In on your Challenge by sending your Location</p>&nbsp;
 														</li>
+														<center><div id='map'></div></center>
+															<center><a href='#' id='geolocate' class='ui-button'>Find me</a></center>
 													</div>
 													<div class="4u">
 														<ul class="actions align-center">
@@ -117,16 +146,12 @@
 												<div class="row uniform 50%" style="margin-bottom:10px;">
 													<div class="8u 12u$(xsmall)">
 														<li style="margin-top:-3px; margin-left:50px;">
-															<p class="requestvariables">Ronald Weasley</p>&nbsp;&nbsp;
-															<span class="request">Study 10 SAT words to expand</span>&nbsp;&nbsp;
-															<p class="requestvariables">your</p>&nbsp;&nbsp;
-															<span class="request">vocabulary</span>&nbsp;&nbsp;
-															<p class="requestvariables">#learnit #loveit #liveit</p>&nbsp;
+															<p class="requestvariables">Ronald Weasley sent you a Location to Verify</p>&nbsp;&nbsp;
 														</li>
 													</div>
 													<div class="4u">
 														<ul class="actions align-center">
-															<li><a href="userhome.html"><input type="submit" value="&nbsp;&nbsp;&nbsp;&nbsp;Accept&nbsp;&nbsp;&nbsp;&nbsp;" class="special" /></a></li>
+															<li><a href="userhome.html"><input type="submit" value="&nbsp;&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;&nbsp;" class="special" /></a></li>
 														</ul>
 													</div>
 													</div>
@@ -161,6 +186,56 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+			<script>
+				L.mapbox.accessToken = 'pk.eyJ1IjoiZXRyYW45OSIsImEiOiJkZTliOGE0Y2JiZmVkMTc4ZjE2NWVjYzQzMzg4ZmIwYiJ9.gviZItgZZPWUzLmJDBwvmg';
+				var geolocate = document.getElementById('geolocate');
+				var map = L.mapbox.map('map', 'etran99.n8n43b4d');
+
+				var myLayer = L.mapbox.featureLayer().addTo(map);
+
+				// This uses the HTML5 geolocation API, which is available on
+				// most mobile browsers and modern browsers, but not in Internet Explorer
+				//
+				// See this chart of compatibility for details:
+				// http://caniuse.com/#feat=geolocation
+				if (!navigator.geolocation) {
+				    geolocate.innerHTML = 'Geolocation is not available';
+				} else {
+				    geolocate.onclick = function (e) {
+				        e.preventDefault();
+				        e.stopPropagation();
+				        map.locate();
+				    };
+				}
+
+				// Once we've got a position, zoom and center the map
+				// on it, and add a single marker.
+				map.on('locationfound', function(e) {
+				    map.fitBounds(e.bounds);
+
+				    myLayer.setGeoJSON({
+				        type: 'Feature',
+				        geometry: {
+				            type: 'Point',
+				            coordinates: [e.latlng.lng, e.latlng.lat]
+				        },
+				        properties: {
+				            'title': 'Here I am!',
+				            'marker-color': '#ff8888',
+				            'marker-symbol': 'star'
+				        }
+				    });
+
+				    // And hide the geolocation button
+				    geolocate.parentNode.removeChild(geolocate);
+				});
+
+				// If the user chooses not to allow their location
+				// to be shared, display an error message.
+				map.on('locationerror', function() {
+				    geolocate.innerHTML = 'Position could not be found';
+				});
+				</script>
 
 	</body>
 </html>
