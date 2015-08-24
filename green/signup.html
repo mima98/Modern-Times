@@ -233,7 +233,7 @@
        user.signUp(null, {
            success: function (user) {
                // Hooray!
-               alert("User " + user.getUsername() + " is created and logged in!");
+               window.location = "userhome.html"
            },
            error: function (user, error) {
                // Show the error message somewhere and let the user try again.
