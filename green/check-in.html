@@ -18,18 +18,16 @@
         async defer>
    		</script>
 
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-
-
 		<style>
-			html, body {
-        		height: 100%;
-        		margin: 0;
-        		padding: 0;
-      		}
      		 #map {
-        		height: 100%;
+        		height: 0%;
+        		width: 140%;
+        		visibility:none;
+        		transition-duration:0.3s;
       		}
+
+
+
 		</style>
 </head>
 	
@@ -108,11 +106,11 @@
 														<li style="margin-top:-3px; margin-left:50px; margin-bottom:10px;">
 															<p class="requestvariables">Check-In on your Challenge by sending your Location</p>&nbsp;
 														</li>
-														<div id="map"></div>
+														<div id="map" style="margin-left:20px;"></div>
 													</div>
 													<div class="4u">
 														<ul class="actions align-center">
-															<li><a href="userhome.html"><i class="fa fa-map-marker fa-2x"></i></a></li>
+															<li><a href="#"><i onclick="showmap()" class="fa fa-map-marker fa-2x"></i></a></li>
 														</ul>
 													</div>
 												</div>
@@ -200,6 +198,12 @@
 				  infoWindow.setContent(browserHasGeolocation ?
 				                        'Error: The Geolocation service failed.' :
 				                        'Error: Your browser doesn\'t support geolocation.');
+				}
+
+				function showmap() {
+					document.getElementById("map").style.visibility="visible";
+					document.getElementById("map").style.height="50%";
+					google.maps.event.trigger(document.getElementById('map'), 'resize');
 				}
 
 			</script>
